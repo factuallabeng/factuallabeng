@@ -12,8 +12,8 @@ buttons.forEach(button => {
     });
 });
 
-// SUA CHAVE DE API (Mantida conforme o seu código)
-const GEMINI_API_KEY = "AQ.Ab8RN6LPfzLWQjdjwRd31kYT_l77hKPsxE7hcpICzSIal-BumA";
+// Puxa a chave de forma segura do arquivo externo config.js
+const GEMINI_API_KEY = window.ENV?.GEMINI_API_KEY || "";
 
 const newsText = document.getElementById("news-text");
 const resultBox = document.getElementById("result-box");
@@ -76,6 +76,11 @@ function fileToBase64(file) {
 async function verificarNoticia() {
     const texto = newsText.value.trim();
 
+    if (!GEMINI_API_KEY) {
+        alert("Chave de API não configurada. Verifique seu arquivo config.js.");
+        return;
+    }
+
     if (!texto && !imagemSelecionada) {
         alert("Digite uma notícia ou selecione uma imagem.");
         return;
@@ -111,19 +116,16 @@ FONTES:
 
         let parts = [];
 
-        // Adiciona o texto se houver
         if (texto) {
             parts.push({
                 text: `${promptSistema}\n\nCONTEÚDO PARA ANÁLISE:\n${texto}`
             });
         } else {
-            // Se houver apenas imagem, precisamos enviar as instruções do sistema por texto
             parts.push({
                 text: promptSistema
             });
         }
 
-        // Adiciona a imagem se houver
         if (imagemSelecionada) {
             const imagemBase64 = await fileToBase64(imagemSelecionada);
             parts.push({
@@ -134,25 +136,22 @@ FONTES:
             });
         }
 
-      // 1. A URL agora fica limpa, sem expor a chave nela
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
 
-      // 2. Fazemos a chamada passando a chave no Header adequado para chaves do tipo "AQ."
-      const response = await fetch(url, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              // Modificação crucial aqui:
-              "x-goog-api-key": GEMINI_API_KEY 
-          },
-          body: JSON.stringify({
-              contents: [
-                  {
-                      parts: parts
-                  }
-              ]
-          })
-      });
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-goog-api-key": GEMINI_API_KEY 
+            },
+            body: JSON.stringify({
+                contents: [
+                    {
+                        parts: parts
+                    }
+                ]
+            })
+        });
 
         const data = await response.json();
         console.log(data);
