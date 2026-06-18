@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Fake News</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-shield-halved"></i> Verific<strong>AI</strong>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-tab="detector">Detector</button>
+            <button class="nav-btn" data-tab="fontes">Fontes Confiáveis</button>
+            <button class="nav-btn" data-tab="dicas">Como Identificar</button>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <section id="detector" class="tab-content active">
+            <div class="hero-text">
+                <h2>Descubra a Verdade em Segundos</h2>
+                <p>Cole o texto da notícia ou envie uma imagem para verificar a veracidade dos fatos.</p>
+            </div>
+
+            <div class="checker-container">
+                <div class="input-area">
+                    <textarea id="news-text" placeholder="Cole o texto da notícia aqui..."></textarea>
+                </div>
+
+                <div class="upload-area">
+                    <label for="image-upload" class="custom-upload">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>Ou envie uma imagem/print da notícia</span>
+                    </label>
+                    <input type="file" id="image-upload" accept="image/*">
+                    <p id="file-name" style="margin-top:10px;color:#8b95a1;">
+                        Nenhuma imagem selecionada.
+                    </p>
+                </div>
+
+                <button class="btn-verify" id="btn-verify">
+                    <i class="fa-solid fa-magnifying-glass"></i> Analisar Notícia
+                </button>
+                <button class="btn-verify" id="btn-clear" style="background:#666;margin-top:10px;">
+                    Limpar
+                </button>
+
+                <div class="result-box placeholder" id="result-box">
+                    <p><i class="fa-solid fa-circle-info"></i> O resultado da análise aparecerá aqui.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fontes" class="tab-content">
+            <div class="hero-text">
+                <h2>Jornais e Portais Confiáveis</h2>
+                <p>Consulte sempre veículos de comunicação que prezam pelo jornalismo profissional e checagem de fatos.
+                </p>
+            </div>
+
+            <div class="grid-links">
+                <a href="https://g1.globo.com/fato-ou-fake/" target="_blank" class="card-link">
+                    <h3>G1 - Fato ou Fake</h3>
+                    <p>Agência de checagem de fatos do portal G1.</p>
+                    <span class="link-arrow">Visitar <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+                <a href="https://aosfatos.org/" target="_blank" class="card-link">
+                    <h3>Aos Fatos</h3>
+                    <p>Uma das maiores agências independentes de checagem do Brasil.</p>
+                    <span class="link-arrow">Visitar <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+                <a href="https://piaui.folha.uol.com.br/lupa/" target="_blank" class="card-link">
+                    <h3>Agência Lupa</h3>
+                    <p>Primeira agência de fact-checking do país, especializada em política e cotidiano.</p>
+                    <span class="link-arrow">Visitar <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+                <a href="https://www.estadao.com.br/estadao-verifica/" target="_blank" class="card-link">
+                    <h3>Estadão Verifica</h3>
+                    <p>Núcleo de checagem de fatos do jornal O Estado de S. Paulo.</p>
+                    <span class="link-arrow">Visitar <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+                </a>
+            </div>
+        </section>
+
+        <section id="dicas" class="tab-content">
+            <div class="hero-text">
+                <h2>Como Identificar uma Notícia Falsa?</h2>
+                <p>Desenvolva um olhar crítico e não seja engajado pelo sensacionalismo.</p>
+            </div>
+
+            <div class="dicas-container">
+                <div class="dica-card">
+                    <div class="dica-num">01</div>
+                    <div class="dica-info">
+                        <h3>Verifique a Fonte e a URL</h3>
+                        <p>Muitos sites falsos usam URLs parecidas com as de portais famosos (ex:
+                            <i>g1-noticias-fake.com</i>). Olhe o link com atenção.</p>
+                    </div>
+                </div>
+
+                <div class="dica-card">
+                    <div class="dica-num">02</div>
+                    <div class="dica-info">
+                        <h3>Leia além do Título</h3>
+                        <p>Títulos bombásticos ou alarmistas ("URGENTE!", "COMPARTILHE ANTES QUE APAGUEM") são feitos
+                            para gerar emoção e cliques rápidos.</p>
+                    </div>
+                </div>
+
+                <div class="dica-card">
+                    <div class="dica-num">03</div>
+                    <div class="dica-info">
+                        <h3>Pesquise em outros veículos</h3>
+                        <p>Se a notícia for real e importante, ela estará sendo coberta por vários jornais de
+                            credibilidade ao mesmo tempo. Se só um site desconhecido fala disso, desconfie.</p>
+                    </div>
+                </div>
+
+                <div class="dica-card">
+                    <div class="dica-num">04</div>
+                    <div class="dica-info">
+                        <h3>Cuidado com imagens e áudios antigos</h3>
+                        <p>É muito comum tirarem um vídeo ou foto real de contexto (de anos atrás) e dizerem que está
+                            acontecendo hoje.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 VerificAI. Combate à desinformação.</p>
+        <p>Desenvolvido por João Pedro Neves de Araujo</p>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
+</body>
+
+
+</html>
